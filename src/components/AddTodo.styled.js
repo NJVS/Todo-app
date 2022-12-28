@@ -6,7 +6,7 @@ export const Container = styled.form`
   align-items: flex-end;
   gap: 0.375rem;
   width: 100%;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   padding: 1.25rem 1rem;
   background-color: ${({ theme }) => theme.mainBackground};
   border-radius: 6px;

@@ -48,9 +48,34 @@ export const Container = styled.li`
 
   p {
     flex-grow: 1;
+    margin-left: 1rem;
+    color: ${({ theme }) => theme.text};
+    font-size: 1.125rem;
+  }
+
+  &:hover button {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    outline: none;
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+
+    &:focus {
+      border-color: var(--c-blue-400);
+      box-shadow: 0 0 0 4px var(--c-focus-shadow);
+    }
   }
 `;
-
-export const DeleteTask = styled(DeleteIcon)`
-  cursor: pointer;
-`
