@@ -35,7 +35,6 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     width: 100%;
-    min-height: 100vh;
     background: url(${({ theme }) => (theme.id === 'light') ? BgDesktopLight : BgDesktopDark});
     background-color: ${({ theme }) => theme.bodybackground};
     background-repeat: no-repeat;
@@ -59,7 +58,7 @@ export const GlobalStyles = createGlobalStyle`
     flex-direction: column;
     margin: auto;
     width: min(540px, 90%);
-    height: 100vh;
+    min-height: 100vh;
   }
 `
 
