@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "./components/Header";
 import TodoContainer from "./components/TodoContainer";
@@ -11,29 +11,56 @@ function App() {
   const [theme, setTheme] = useState(themes.light);
   const themeToggler = event => setTheme((event.target.checked) ? themes.dark : themes.light);
 
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      task: "Doctor's Appointement",
-      done: false
-    },
-    {
-      id: 2,
-      task: "Job Interview",
-      done: false
-    },
-    {
-      id: 3,
-      task: "Drive wifey to work",
-      done: true
-    }
-  ])
+  const [tasks, setTasks] = useState([]);
+  // const [newTask, setNewTask] = useState({});
+
+  // get tasks
+  useEffect(() => {
+    fetch('https://todo-app-881d2-default-rtdb.asia-southeast1.firebasedatabase.app/tasks.json')
+      .then(res => res.json())
+      .then(data => {
+        const _tasks = [];
+
+        Object.entries(data).forEach(item => {
+          const reconstruct = { id: item[0], ...item[1] }
+          _tasks.push(reconstruct);
+        })
+        setTasks(_tasks);
+      })
+  }, []);
+
+  // delete task
+  const deleteTask = async (id) => {
+    fetch(
+      `https://todo-app-881d2-default-rtdb.asia-southeast1.firebasedatabase.app/tasks/${id}.json`,
+      {
+        method: 'DELETE'
+      }
+    );
+
+    setTasks(tasks.filter(task => task.id !== id));
+  }
+  // add new task
+  const addNewTodo = async task => {
+    const id = await fetch('https://todo-app-881d2-default-rtdb.asia-southeast1.firebasedatabase.app/tasks.json',
+      {
+        method: "POST",
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(task)
+      }
+    ).then(res => res.json());
+
+    setTasks(prevState => {
+      return [...prevState, { id: id.name, ...task }];
+    })
+  }
+  // 
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Header themeToggler={themeToggler} />
-      <TodoContainer todos={todos} />
+      <TodoContainer todos={tasks} deleteTask={deleteTask} addNewTodo={addNewTodo} />
       <Footer />
     </ThemeProvider>
   );
