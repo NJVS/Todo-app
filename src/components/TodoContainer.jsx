@@ -3,14 +3,14 @@ import Todo from './Todo';
 
 import { Container, TodoControlls } from "./TodoContainer.styled";
 
-const TodoContainer = ({ todos, deleteTask, addNewTodo }) => {
+const TodoContainer = ({ todos, deleteTask, addNewTodo, completeTask }) => {
   return (
     <Container>
       <AddTodo addNewTodo={addNewTodo} />
       <ul>
         {
           todos.map(todo => (
-            <Todo key={todo.id} todo={todo} deleteTask={deleteTask} />
+            <Todo key={todo.id} todo={todo} deleteTask={deleteTask} completeTask={completeTask} />
           ))
         }
       </ul>
