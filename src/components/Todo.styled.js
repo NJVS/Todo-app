@@ -9,6 +9,10 @@ export const Container = styled.li`
   padding: 1.25rem 1rem;
   border-bottom: 1px solid ${({ theme }) => theme.border};
 
+  &:last-child {
+    border-bottom: none;
+  }
+
   input[type=checkbox] {
     all: unset;
     display: grid;

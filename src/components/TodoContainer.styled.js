@@ -4,7 +4,7 @@ export const Container = styled.main`
   flex-grow: 1;
 
   > ul {
-    max-height: 50vh;
+    max-height: 461px;
     overflow-y: auto;
     background-color: ${({ theme }) => theme.mainBackground};
     border-radius: 6px 6px 0 0;
@@ -18,7 +18,12 @@ export const TodoControlls = styled.section`
   padding: 1.5rem 1rem;
   background-color: ${({ theme }) => theme.mainBackground};
   border-radius: ${({ noTask }) => noTask ? '6px' : '0 0 6px 6px'};
-
+  border-top: 1px solid ${({ theme }) => theme.border};
+  ${({ noTask }) => !noTask
+    ? `border-width: 1px;`
+    : `border-width: 0px;`
+  }
+  
 
   font-size: 0.875rem;
 
