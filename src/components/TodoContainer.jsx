@@ -7,12 +7,24 @@ import Todo from './Todo';
 import { Container, TodoControlls } from "./TodoContainer.styled";
 
 const TodoContainer = () => {
-  const { todos } = useContext(TodoContext);
+  const { todos, setTodos } = useContext(TodoContext);
   const [filter, setFilter] = useState('all');
   const [filtered, setFiltered] = useState([]);
 
   function filterHandler(event) {
     setFilter(event.target.value);
+  }
+
+  function deleteCompleteTasksHandler() {
+    const incTaskIds = todos.filter(todo => todo.done === true).map(todo => todo.id);
+    // from storage
+    incTaskIds.forEach(id => {
+      fetch(`https://todo-app-881d2-default-rtdb.asia-southeast1.firebasedatabase.app/tasks/${id}.json`,
+        { method: 'DELETE' }
+      )
+    })
+    // from UI
+    setTodos(todos.filter(todo => todo.done === false));
   }
 
   useEffect(() => {
@@ -48,7 +60,7 @@ const TodoContainer = () => {
             <label htmlFor="rd_showCompleted">Completed</label>
           </li>
         </ul>
-        <button>Clear Completed</button>
+        <button onClick={() => deleteCompleteTasksHandler()}>Clear Completed</button>
       </TodoControlls>
     </Container >
   )
