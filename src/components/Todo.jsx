@@ -41,7 +41,7 @@ const Todo = ({ todo }) => {
   }
 
   return (
-    <Container>
+    <Container isDone={todo.done} >
       <input type="checkbox" name="done" defaultChecked={todo.done} onChange={() => toggleCompleteTask(todo.id)} />
       <p>{todo.task}</p>
       <button onClick={() => deleteTodoHandler(todo.id)}>

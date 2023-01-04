@@ -53,8 +53,9 @@ export const Container = styled.li`
   p {
     flex-grow: 1;
     margin-left: 1rem;
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme, isDone }) => (isDone) ? theme.textMuted : theme.text};
     font-size: 1.125rem;
+    ${({ isDone }) => (isDone) && 'text-decoration: line-through;'};
   }
 
   &:hover button {
