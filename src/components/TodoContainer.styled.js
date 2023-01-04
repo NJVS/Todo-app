@@ -9,6 +9,18 @@ export const Container = styled.main`
     background-color: ${({ theme }) => theme.mainBackground};
     border-radius: 6px 6px 0 0;
     transition: background-color 0.3s ease;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--c-gradient-background);
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      border: 1px solid ${({ theme }) => theme.border};
+      border-radius: 5px;
+    }
   }
 `
 
