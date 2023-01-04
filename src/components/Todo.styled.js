@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import CheckIcon from '../assets/svgs/icon-check.svg';
-import { ReactComponent as DeleteIcon } from '../assets/svgs/icon-cross.svg';
 
 export const Container = styled.li`
   display: flex;

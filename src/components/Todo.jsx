@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { TodoContext } from '../contexts/TodoProvider';
 
-import { Container, DeleteTask } from './Todo.styled';
+import { Container } from './Todo.styled';
 import { ReactComponent as DeleteIcon } from '../assets/svgs/icon-cross.svg';
 
 const Todo = ({ todo }) => {
